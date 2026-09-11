@@ -1,0 +1,16 @@
+.menu {
+  border-top: 1px solid var(--border);
+  background: var(--background);
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .menu {
+    display: none;
+  }
+}

@@ -1,0 +1,63 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+}
+
+.inner {
+  display: flex;
+  height: 4rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+}
+
+.brand {
+  color: var(--text);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-decoration: none;
+}
+
+.desktopNav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 4.25rem 2.5rem auto;
+  grid-template-rows: 2.5rem;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+
+.menuButton {
+  border: 0;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    padding: 0 2.5rem;
+  }
+
+  .desktopNav {
+    display: flex;
+  }
+
+  .actions {
+    grid-template-columns: 4.25rem 2.5rem;
+  }
+
+  .menuButton {
+    display: none;
+  }
+}

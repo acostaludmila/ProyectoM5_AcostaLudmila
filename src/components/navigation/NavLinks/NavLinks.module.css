@@ -1,0 +1,13 @@
+.link {
+  padding: 0.5rem 0;
+  color: var(--text);
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.link:hover,
+.active {
+  color: var(--accent);
+}

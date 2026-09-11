@@ -1,37 +1,43 @@
 @import "tailwindcss";
 
-/* Variables semánticas utilizadas por los componentes */
+/* Tokens semánticos disponibles como clases de Tailwind */
 @theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-text: var(--text);
   --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
 }
 
-/* Tema claro oficial de AURELLE */
+/* Tema claro — Stone Pine */
 :root {
-  --background: #f7f3ee;
-  --surface: #ffffff;
-  --text: #1c1c1c;
-  --accent: #b89b5e;
-  --muted: #d8cec3;
-  --border: #d8cec3;
+  color-scheme: light;
+  --background: #f1f3f0;
+  --surface: #fafbf8;
+  --text: #222825;
+  --accent: #2e5a4d;
+  --accent-foreground: #f7fbf8;
+  --muted: #68716c;
+  --border: #d5dcd7;
 }
 
-/* Tema oscuro de AURELLE */
+/* Tema oscuro — Stone Pine */
 .dark {
-  --background: #171513;
-  --surface: #211e1b;
-  --text: #f7f3ee;
-  --accent: #c5aa6e;
-  --muted: #3a342e;
-  --border: #443d36;
+  color-scheme: dark;
+  --background: #121816;
+  --surface: #1b2421;
+  --text: #edf2ef;
+  --accent: #7fa895;
+  --accent-foreground: #102019;
+  --muted: #9ca6a1;
+  --border: #33413c;
 }
 
 /* Configuración global */
 html {
+  scroll-behavior: smooth;
   background-color: var(--background);
   color: var(--text);
 }
@@ -40,6 +46,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--background);
 }
 
 /* Normalización de tamaños */
