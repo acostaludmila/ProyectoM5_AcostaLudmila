@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+/* Variables semánticas utilizadas por los componentes */
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+}
+
+/* Tema claro oficial de AURELLE */
+:root {
+  --background: #f7f3ee;
+  --surface: #ffffff;
+  --text: #1c1c1c;
+  --accent: #b89b5e;
+  --muted: #d8cec3;
+  --border: #d8cec3;
+}
+
+/* Tema oscuro de AURELLE */
+.dark {
+  --background: #171513;
+  --surface: #211e1b;
+  --text: #f7f3ee;
+  --accent: #c5aa6e;
+  --muted: #3a342e;
+  --border: #443d36;
+}
+
+/* Configuración global */
+html {
+  background-color: var(--background);
+  color: var(--text);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Normalización de tamaños */
+* {
+  box-sizing: border-box;
+}
