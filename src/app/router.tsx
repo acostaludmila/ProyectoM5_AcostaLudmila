@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
 import LoginPage from '../features/auth/pages/LoginPage/LoginPage'
 import RegisterPage from '../features/auth/pages/RegisterPage/RegisterPage'
+import CartPage from '../features/cart/pages/CartPage/CartPage'
+import CheckoutPage from '../features/cart/pages/CheckoutPage/CheckoutPage'
 import ProductDetailPage from '../features/products/pages/ProductDetailPage/ProductDetailPage'
 import AuthLayout from '../layouts/AuthLayout/AuthLayout'
 import MainLayout from '../layouts/MainLayout/MainLayout'
@@ -25,6 +27,8 @@ export const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: 'collections', element: <CollectionsPage /> },
       { path: 'products/:productId', element: <ProductDetailPage /> },
+      { path: 'cart', element: <CartPage /> },
+      { path: 'checkout', element: <CheckoutPage /> },
       { path: 'about', element: <AboutPage /> },
       { path: 'unauthorized', element: <UnauthorizedPage /> },
       { path: '*', element: <NotFoundPage /> },

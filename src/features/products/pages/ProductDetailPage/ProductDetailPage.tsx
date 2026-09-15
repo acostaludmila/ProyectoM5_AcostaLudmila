@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import { formatCurrency } from '../../../../utils/formatCurrency'
 import { useLanguage } from '../../../language/hooks/useLanguage'
 import ProductGallery from '../../components/ProductGallery/ProductGallery'
-import VariantSelector from '../../components/VariantSelector/VariantSelector'
+import ProductPurchasePanel from '../../components/ProductPurchasePanel/ProductPurchasePanel'
 import { useProduct } from '../../hooks/useProduct'
 import styles from './ProductDetailPage.module.css'
 
@@ -46,13 +46,9 @@ function ProductDetailPage() {
           {product.description}
         </p>
 
-        <VariantSelector
+        <ProductPurchasePanel
           key={product.id}
-          variants={product.variants}
-          colorLabel={t('product.color')}
-          sizeLabel={t('product.size')}
-          stockLabel={t('product.stock')}
-          outOfStockLabel={t('product.outOfStock')}
+          product={product}
         />
       </div>
     </section>

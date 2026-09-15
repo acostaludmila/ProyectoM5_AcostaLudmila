@@ -1,0 +1,73 @@
+.page {
+  width: min(100% - 3rem, 68rem);
+  margin: 0 auto;
+  padding: 4rem 0 6rem;
+}
+
+.page header span {
+  color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+}
+
+.page h1 {
+  margin: 0.5rem 0 2rem;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 500;
+}
+
+.layout {
+  display: grid;
+  gap: 2rem;
+}
+
+.items h2 {
+  margin-top: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.items article {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 0;
+}
+
+.items article div {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.items article span,
+.side p {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.side {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+}
+
+.side > a,
+.empty a {
+  color: var(--text);
+  text-underline-offset: 0.25rem;
+}
+
+.empty {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+  }
+}

@@ -1,0 +1,46 @@
+.page {
+  width: min(100% - 3rem, 72rem);
+  margin: 0 auto;
+  padding: 4rem 0 6rem;
+}
+
+.page header span {
+  color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+}
+
+.page h1 {
+  margin: 0.5rem 0 2rem;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 500;
+}
+
+.layout {
+  display: grid;
+  gap: 2rem;
+}
+
+.empty {
+  display: grid;
+  justify-items: start;
+  gap: 1.25rem;
+  color: var(--muted);
+}
+
+.empty a {
+  color: var(--text);
+  text-underline-offset: 0.25rem;
+}
+
+@media (min-width: 800px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+    align-items: start;
+  }
+
+  .layout aside {
+    position: sticky;
+    top: 7rem;
+  }
+}

@@ -1,0 +1,31 @@
+.summary {
+  display: grid;
+  gap: 1.5rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 1.5rem;
+}
+
+.summary div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.summary span {
+  color: var(--muted);
+}
+
+.summary strong {
+  font-weight: 500;
+}
+
+.summary a {
+  background: var(--accent);
+  padding: 0.9rem 1.25rem;
+  color: var(--accent-foreground);
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}

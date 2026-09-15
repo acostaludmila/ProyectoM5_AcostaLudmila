@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import CartNavAction from '../../../features/cart/components/CartNavAction/CartNavAction'
 import { useLanguage } from '../../../features/language/hooks/useLanguage'
 import HeaderControlButton from '../../ui/HeaderControlButton/HeaderControlButton'
 import LanguageSelector from '../../ui/LanguageSelector/LanguageSelector'
@@ -24,6 +25,7 @@ function Header() {
         </nav>
 
         <div className={styles.actions}>
+          <CartNavAction />
           <LanguageSelector />
           <ThemeToggle />
 
