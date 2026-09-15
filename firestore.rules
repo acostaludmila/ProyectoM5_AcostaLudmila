@@ -7,7 +7,8 @@ service cloud.firestore {
     }
 
     function isOwner(userId) {
-      return signedIn() && request.auth.uid == userId;
+      return signedIn()
+        && request.auth.uid == userId;
     }
 
     function isAdmin() {
@@ -19,13 +20,24 @@ service cloud.firestore {
 
     function validNewUser(userId) {
       let data = request.resource.data;
+
       return data.keys().hasAll([
-        'uid', 'email', 'displayName', 'photoURL',
-        'role', 'createdAt', 'updatedAt'
+        'uid',
+        'email',
+        'displayName',
+        'photoURL',
+        'role',
+        'createdAt',
+        'updatedAt'
       ])
         && data.keys().hasOnly([
-          'uid', 'email', 'displayName', 'photoURL',
-          'role', 'createdAt', 'updatedAt'
+          'uid',
+          'email',
+          'displayName',
+          'photoURL',
+          'role',
+          'createdAt',
+          'updatedAt'
         ])
         && data.uid == userId
         && data.email == request.auth.token.email
@@ -33,73 +45,127 @@ service cloud.firestore {
     }
 
     function validProfileUpdate() {
-      let changed = request.resource.data.diff(resource.data).affectedKeys();
+      let changed =
+        request.resource.data
+          .diff(resource.data)
+          .affectedKeys();
+
       return changed.hasOnly([
-        'displayName', 'photoURL', 'updatedAt'
+        'displayName',
+        'photoURL',
+        'updatedAt'
       ])
-        && request.resource.data.uid == resource.data.uid
-        && request.resource.data.email == resource.data.email
-        && request.resource.data.role == resource.data.role
-        && request.resource.data.createdAt == resource.data.createdAt;
+        && request.resource.data.uid
+          == resource.data.uid
+        && request.resource.data.email
+          == resource.data.email
+        && request.resource.data.role
+          == resource.data.role
+        && request.resource.data.createdAt
+          == resource.data.createdAt;
     }
 
-    function validProduct() {
+    function validProductData() {
       let data = request.resource.data;
+
       return data.keys().hasAll([
-        'name', 'description', 'price', 'category',
-        'images', 'variants', 'active', 'createdAt', 'updatedAt'
+        'name',
+        'description',
+        'price',
+        'category',
+        'tags',
+        'images',
+        'variants',
+        'active',
+        'createdAt',
+        'updatedAt'
       ])
         && data.keys().hasOnly([
-          'name', 'description', 'price', 'category',
-          'images', 'variants', 'active', 'createdAt', 'updatedAt'
+          'name',
+          'description',
+          'price',
+          'category',
+          'tags',
+          'subcategory',
+          'images',
+          'variants',
+          'active',
+          'viewCount',
+          'createdAt',
+          'updatedAt'
         ])
         && data.name is string
         && data.description is string
         && data.price is number
         && data.price > 0
-        && data.category in ['clothing', 'jewelry', 'essentials']
+        && data.category in [
+          'clothing',
+          'jewelry',
+          'essentials'
+        ]
+        && data.tags is list
         && data.images is list
         && data.images.size() > 0
         && data.images.size() <= 5
         && data.variants is list
         && data.variants.size() > 0
-        && data.active is bool;
+        && data.active is bool
+        && data.get('viewCount', 0) is int
+        && data.get('viewCount', 0) >= 0;
     }
 
     function validStockPurchase() {
-      let changed = request.resource.data
-        .diff(resource.data)
-        .affectedKeys();
+      let changed =
+        request.resource.data
+          .diff(resource.data)
+          .affectedKeys();
 
       return signedIn()
         && resource.data.active == true
-        && changed.hasOnly(['variants', 'updatedAt'])
+        && changed.hasOnly([
+          'variants',
+          'updatedAt'
+        ])
         && request.resource.data.variants is list
         && request.resource.data.variants.size()
           == resource.data.variants.size()
-        && request.resource.data.updatedAt == request.time;
+        && request.resource.data.updatedAt
+          == request.time;
     }
 
-    function validAdminOrderUpdate() {
-      let changed = request.resource.data
-        .diff(resource.data)
-        .affectedKeys();
+    function validViewIncrement() {
+      let changed =
+        request.resource.data
+          .diff(resource.data)
+          .affectedKeys();
 
-      return isAdmin()
-        && changed.hasOnly(['status'])
-        && request.resource.data.status in [
-          'pending', 'paid', 'processing', 'shipped',
-          'delivered', 'cancelled'
-        ];
+      return changed.hasOnly(['viewCount'])
+        && request.resource.data.get(
+          'viewCount',
+          0
+        ) == resource.data.get(
+          'viewCount',
+          0
+        ) + 1;
     }
 
     function validNewOrder() {
       let data = request.resource.data;
-      return data.keys().hasAll([
-        'userId', 'items', 'total', 'status', 'createdAt'
-      ])
+
+      return signedIn()
+        && data.keys().hasAll([
+          'userId',
+          'items',
+          'total',
+          'status',
+          'createdAt'
+        ])
         && data.keys().hasOnly([
-          'userId', 'items', 'total', 'status', 'createdAt'
+          'userId',
+          'items',
+          'total',
+          'status',
+          'createdAt'
         ])
         && data.userId == request.auth.uid
         && data.items is list
@@ -110,33 +176,190 @@ service cloud.firestore {
         && data.createdAt == request.time;
     }
 
+    function validAdminOrderUpdate() {
+      let changed =
+        request.resource.data
+          .diff(resource.data)
+          .affectedKeys();
+
+      return isAdmin()
+        && changed.hasOnly(['status'])
+        && request.resource.data.status in [
+          'pending',
+          'paid',
+          'processing',
+          'shipped',
+          'delivered',
+          'cancelled'
+        ];
+    }
+
+    function validFavorite(
+      userId,
+      productId
+    ) {
+      let data = request.resource.data;
+
+      return isOwner(userId)
+        && data.keys().hasAll([
+          'productId',
+          'createdAt'
+        ])
+        && data.keys().hasOnly([
+          'productId',
+          'createdAt'
+        ])
+        && data.productId == productId
+        && data.createdAt == request.time;
+    }
+
+    function validReview(
+      userId,
+      productId
+    ) {
+      let data = request.resource.data;
+
+      return isOwner(userId)
+        && data.keys().hasAll([
+          'productId',
+          'userId',
+          'userName',
+          'rating',
+          'comment',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'productId',
+          'userId',
+          'userName',
+          'rating',
+          'comment',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.productId == productId
+        && data.userId == userId
+        && data.userName is string
+        && data.rating is int
+        && data.rating >= 1
+        && data.rating <= 5
+        && data.comment is string
+        && data.comment.size() > 0
+        && data.comment.size() <= 1000;
+    }
+
     match /users/{userId} {
-      allow create: if isOwner(userId) && validNewUser(userId);
-      allow read: if isOwner(userId) || isAdmin();
-      allow update: if isOwner(userId) && validProfileUpdate();
+      allow create:
+        if isOwner(userId)
+        && validNewUser(userId);
+
+      allow read:
+        if isOwner(userId)
+        || isAdmin();
+
+      allow update:
+        if isOwner(userId)
+        && validProfileUpdate();
+
       allow delete: if false;
+
+      match /favorites/{productId} {
+        allow read:
+          if isOwner(userId);
+
+        allow create:
+          if validFavorite(
+            userId,
+            productId
+          );
+
+        allow update:
+          if validFavorite(
+            userId,
+            productId
+          );
+
+        allow delete:
+          if isOwner(userId);
+      }
+    }
+
+    match /{path=**}/reviews/{reviewUserId} {
+      allow read: if true;
     }
 
     match /products/{productId} {
-      allow read: if resource.data.active == true || isAdmin();
-      allow create: if isAdmin()
-        && validProduct()
-        && request.resource.data.createdAt == request.time
-        && request.resource.data.updatedAt == request.time;
-      allow update: if (
-        isAdmin()
-          && validProduct()
-          && request.resource.data.createdAt == resource.data.createdAt
-          && request.resource.data.updatedAt == request.time
-      ) || validStockPurchase();
-      allow delete: if isAdmin();
+      allow read:
+        if resource.data.active == true
+        || isAdmin();
+
+      allow create:
+        if isAdmin()
+        && validProductData()
+        && request.resource.data.createdAt
+          == request.time
+        && request.resource.data.updatedAt
+          == request.time;
+
+      allow update:
+        if (
+          isAdmin()
+          && validProductData()
+          && request.resource.data.createdAt
+            == resource.data.createdAt
+          && request.resource.data.updatedAt
+            == request.time
+        )
+        || validStockPurchase()
+        || validViewIncrement();
+
+      allow delete:
+        if isAdmin();
+
+      match /reviews/{reviewUserId} {
+        allow read: if true;
+
+        allow create:
+          if validReview(
+            reviewUserId,
+            productId
+          )
+          && request.resource.data.createdAt
+            == request.time
+          && request.resource.data.updatedAt
+            == request.time;
+
+        allow update:
+          if validReview(
+            reviewUserId,
+            productId
+          )
+          && request.resource.data.createdAt
+            == resource.data.createdAt
+          && request.resource.data.updatedAt
+            == request.time;
+
+        allow delete:
+          if isOwner(reviewUserId);
+      }
     }
 
     match /orders/{orderId} {
-      allow create: if signedIn() && validNewOrder();
-      allow read: if signedIn()
-        && (resource.data.userId == request.auth.uid || isAdmin());
-      allow update: if validAdminOrderUpdate();
+      allow create:
+        if validNewOrder();
+
+      allow read:
+        if signedIn()
+        && (
+          resource.data.userId
+            == request.auth.uid
+          || isAdmin()
+        );
+
+      allow update:
+        if validAdminOrderUpdate();
+
       allow delete: if false;
     }
 

@@ -1,0 +1,17 @@
+.form {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.form textarea {
+  min-height: 7rem;
+  resize: vertical;
+  border: 1px solid var(--border);
+  background: var(--background);
+  padding: 0.8rem;
+  color: var(--text);
+  font: inherit;
+}

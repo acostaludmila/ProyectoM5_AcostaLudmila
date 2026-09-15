@@ -21,37 +21,8 @@
   font-weight: 500;
 }
 
-.page header p,
-.items span {
+.page header p {
   color: var(--muted);
-}
-
-.items {
-  margin: 2rem 0;
-}
-
-.items article {
-  display: grid;
-  grid-template-columns: 4rem 1fr auto;
-  align-items: center;
-  gap: 1rem;
-  border-bottom: 1px solid var(--border);
-  padding: 1rem 0;
-}
-
-.items img {
-  width: 4rem;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-}
-
-.items article div {
-  display: grid;
-  gap: 0.3rem;
-}
-
-.items span {
-  font-size: 0.8rem;
 }
 
 .total {
@@ -63,6 +34,7 @@
 
 .back {
   width: fit-content;
+  margin-top: 1rem;
   text-decoration: none;
 }
 

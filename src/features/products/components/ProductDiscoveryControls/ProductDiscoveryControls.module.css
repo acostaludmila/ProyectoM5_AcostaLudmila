@@ -1,0 +1,21 @@
+.controls {
+  display: grid;
+  min-width: 0;
+  gap: 1.5rem;
+}
+
+.topbar {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(14rem, 18rem);
+  align-items: end;
+  gap: 1rem;
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+  .topbar {
+    grid-template-columns: 1fr;
+  }
+}

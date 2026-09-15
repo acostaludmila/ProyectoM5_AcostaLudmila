@@ -1,0 +1,25 @@
+.page {
+  width: min(100% - 3rem, 90rem);
+  margin: 0 auto;
+  padding: 4rem 0 6rem;
+}
+
+.page header {
+  margin-bottom: 2rem;
+}
+
+.page header span {
+  color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+}
+
+.page h1 {
+  margin: 0.5rem 0 0;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 500;
+}
+
+.state {
+  color: var(--muted);
+}

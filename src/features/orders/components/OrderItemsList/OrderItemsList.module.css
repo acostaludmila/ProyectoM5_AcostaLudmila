@@ -1,0 +1,28 @@
+.items {
+  margin: 2rem 0;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 4rem 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0;
+}
+
+.item img {
+  width: 4rem;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.info {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.info span {
+  color: var(--muted);
+  font-size: 0.8rem;
+}

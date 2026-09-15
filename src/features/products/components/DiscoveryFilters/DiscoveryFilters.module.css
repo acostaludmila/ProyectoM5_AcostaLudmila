@@ -1,0 +1,77 @@
+.filters {
+  display: grid;
+  grid-template-columns:
+    minmax(10rem, 1fr)
+    minmax(10rem, 1fr)
+    auto;
+  align-items: end;
+  gap: 1rem;
+  min-width: 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 1.4rem 0;
+}
+
+.field {
+  display: grid;
+  min-width: 0;
+  gap: 0.45rem;
+}
+
+.field span {
+  color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.field input {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.9rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 0 0.85rem;
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+
+.field input:focus {
+  border-color: var(--accent);
+}
+
+.check {
+  display: flex;
+  min-height: 2.9rem;
+  align-items: center;
+  gap: 0.65rem;
+  white-space: nowrap;
+}
+
+.check input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .filters {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .check {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .check {
+    grid-column: auto;
+  }
+}

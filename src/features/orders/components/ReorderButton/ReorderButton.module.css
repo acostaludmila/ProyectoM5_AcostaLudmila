@@ -1,0 +1,10 @@
+.wrapper {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.message {
+  max-width: 18rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}

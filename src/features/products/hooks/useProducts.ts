@@ -1,37 +1,21 @@
-import { useCallback, useEffect, useState } from 'react'
-import { getProducts } from '../services/getProducts'
-import type { Product, ProductCategory } from '../types/product.types'
-import type {
-  ProductCursor,
-  ProductPage,
-} from '../types/productQuery.types'
+import { useEffect, useState } from 'react'
+import { getAllProducts } from '../services/getAllProducts'
+import type { Product } from '../types/product.types'
 
 const PAGE_SIZE = 8
-type Category = ProductCategory | 'all'
 
 export function useProducts() {
   const [products, setProducts] = useState<Product[]>([])
-  const [category, setCategoryState] = useState<Category>('all')
-  const [cursor, setCursor] = useState<ProductCursor | null>(null)
-  const [hasMore, setHasMore] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
   const [loading, setLoading] = useState(true)
-  const [loadingMore, setLoadingMore] = useState(false)
   const [error, setError] = useState(false)
-
-  const applyPage = useCallback((page: ProductPage, append = false) => {
-    setProducts((current) => append
-      ? [...current, ...page.products]
-      : page.products)
-    setCursor(page.nextCursor)
-    setHasMore(page.hasMore)
-  }, [])
 
   useEffect(() => {
     let cancelled = false
 
-    void getProducts({ category, pageSize: PAGE_SIZE })
-      .then((page) => {
-        if (!cancelled) applyPage(page)
+    void getAllProducts()
+      .then((result) => {
+        if (!cancelled) setProducts(result)
       })
       .catch(() => {
         if (!cancelled) setError(true)
@@ -43,35 +27,20 @@ export function useProducts() {
     return () => {
       cancelled = true
     }
-  }, [category, applyPage])
+  }, [])
 
-  const setCategory = (nextCategory: Category) => {
-    if (nextCategory === category) return
-    setProducts([])
-    setCursor(null)
-    setHasMore(false)
-    setError(false)
-    setLoading(true)
-    setCategoryState(nextCategory)
-  }
+  const loadMore = () =>
+    setVisibleCount((current) => current + PAGE_SIZE)
 
-  const loadMore = async () => {
-    if (!cursor || !hasMore || loadingMore) return
-    setLoadingMore(true)
-    setError(false)
-
-    try {
-      const page = await getProducts({ category, cursor, pageSize: PAGE_SIZE })
-      applyPage(page, true)
-    } catch {
-      setError(true)
-    } finally {
-      setLoadingMore(false)
-    }
-  }
+  const resetVisible = () =>
+    setVisibleCount(PAGE_SIZE)
 
   return {
-    products, category, setCategory, loading, loadingMore,
-    error, hasMore, loadMore,
+    products,
+    visibleCount,
+    loading,
+    error,
+    loadMore,
+    resetVisible,
   }
 }

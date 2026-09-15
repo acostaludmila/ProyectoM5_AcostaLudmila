@@ -1,0 +1,35 @@
+.trigger {
+  display: flex;
+  width: 100%;
+  min-height: 2.9rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 0 0.9rem;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.trigger:hover,
+.trigger:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.chevron {
+  width: 0.45rem;
+  height: 0.45rem;
+  flex-shrink: 0;
+  border-right: 1px solid var(--muted);
+  border-bottom: 1px solid var(--muted);
+  transform: translateY(-20%) rotate(45deg);
+  transition: transform 160ms ease;
+}
+
+.open {
+  transform: translateY(20%) rotate(225deg);
+}

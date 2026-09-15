@@ -5,36 +5,60 @@ import { useLanguage } from '../../../features/language/hooks/useLanguage'
 import { navItems } from '../navItems'
 import styles from './NavLinks.module.css'
 
-interface NavLinksProps {
+interface Props {
   onNavigate?: () => void
 }
 
-function NavLinks({ onNavigate }: NavLinksProps) {
+function NavLinks({ onNavigate }: Props) {
   const { isAuthenticated, isAdmin } = useAuth()
   const { t } = useLanguage()
 
-  const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `${styles.link} ${isActive ? styles.active : ''}`
+  const linkClass = (
+    { isActive }: { isActive: boolean },
+  ) =>
+    [
+      styles.link,
+      isActive ? styles.active : '',
+    ].join(' ')
 
   return (
     <>
       {navItems.map(({ labelKey, to }) => (
-        <NavLink key={to} to={to}
-          className={linkClass} onClick={onNavigate}>
+        <NavLink
+          key={to}
+          to={to}
+          className={linkClass}
+          onClick={onNavigate}
+        >
           {t(labelKey)}
         </NavLink>
       ))}
 
       {isAuthenticated && (
-        <NavLink to="/orders"
-          className={linkClass} onClick={onNavigate}>
-          {t('orders.nav')}
-        </NavLink>
+        <>
+          <NavLink
+            to="/favorites"
+            className={linkClass}
+            onClick={onNavigate}
+          >
+            {t('favorites.nav')}
+          </NavLink>
+          <NavLink
+            to="/orders"
+            className={linkClass}
+            onClick={onNavigate}
+          >
+            {t('orders.nav')}
+          </NavLink>
+        </>
       )}
 
       {isAdmin && (
-        <NavLink to="/admin"
-          className={linkClass} onClick={onNavigate}>
+        <NavLink
+          to="/admin"
+          className={linkClass}
+          onClick={onNavigate}
+        >
           {t('admin.products.nav')}
         </NavLink>
       )}

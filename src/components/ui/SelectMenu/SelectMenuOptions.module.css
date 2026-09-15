@@ -1,0 +1,41 @@
+.menu {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  right: 0;
+  z-index: 40;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--background);
+  box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 18%);
+}
+
+.option {
+  display: flex;
+  width: 100%;
+  min-height: 2.6rem;
+  align-items: center;
+  border: 0;
+  background: var(--background);
+  padding: 0 0.9rem;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.option:not(.active):hover,
+.option:not(.active):focus-visible {
+  background:
+    color-mix(
+      in srgb,
+      var(--accent) 22%,
+      var(--background)
+    );
+  outline: none;
+}
+
+.active {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}

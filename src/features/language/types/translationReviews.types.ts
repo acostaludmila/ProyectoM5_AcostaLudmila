@@ -1,0 +1,10 @@
+export type TranslationReviewsKey =
+  | 'reviews.title'
+  | 'reviews.none'
+  | 'reviews.rating'
+  | 'reviews.comment'
+  | 'reviews.save'
+  | 'reviews.update'
+  | 'reviews.delete'
+  | 'reviews.signIn'
+  | 'reviews.saving'

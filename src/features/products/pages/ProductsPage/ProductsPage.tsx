@@ -1,31 +1,15 @@
-import { useState } from 'react'
 import Button from '../../../../components/ui/Button/Button'
-import { useDebounce } from '../../../../hooks/useDebounce'
 import { useLanguage } from '../../../language/hooks/useLanguage'
-import ProductFilters from '../../components/ProductFilters/ProductFilters'
+import ProductDiscoveryControls from '../../components/ProductDiscoveryControls/ProductDiscoveryControls'
 import ProductGrid from '../../components/ProductGrid/ProductGrid'
-import ProductSearch from '../../components/ProductSearch/ProductSearch'
-import { useProducts } from '../../hooks/useProducts'
-import { filterProducts } from '../../utils/filterProducts'
+import { useProductDiscovery } from '../../hooks/useProductDiscovery'
 import styles from './ProductsPage.module.css'
 
 function ProductsPage() {
   const { language, t } = useLanguage()
-  const [search, setSearch] = useState('')
-  const debouncedSearch = useDebounce(search)
-  const {
-    products, category, setCategory, loading,
-    loadingMore, error, hasMore, loadMore,
-  } = useProducts()
-
-  const labels = {
-    all: t('products.all'),
-    clothing: t('collections.clothing.name'),
-    jewelry: t('collections.jewelry.name'),
-    essentials: t('collections.essentials.name'),
-  }
-  const visibleProducts = filterProducts(products, debouncedSearch)
-  const locale = language === 'es' ? 'es-AR' : 'en-US'
+  const discovery = useProductDiscovery()
+  const locale =
+    language === 'es' ? 'es-AR' : 'en-US'
 
   return (
     <section className={styles.page}>
@@ -34,36 +18,39 @@ function ProductsPage() {
         <h1>{t('products.title')}</h1>
       </header>
 
-      <ProductSearch
-        value={search}
-        label={t('products.search')}
-        onChange={setSearch}
-      />
-      <ProductFilters
-        value={category}
-        labels={labels}
-        onChange={setCategory}
+      <ProductDiscoveryControls
+        search={discovery.search}
+        sort={discovery.sort}
+        filters={discovery.filters}
+        onSearch={discovery.setSearch}
+        onSort={discovery.setSort}
+        onFilters={discovery.setFilters}
+        onCategory={discovery.setCategory}
       />
 
-      {loading ? (
-        <p className={styles.state}>{t('products.loading')}</p>
-      ) : error ? (
-        <p className={styles.state}>{t('products.error')}</p>
+      {discovery.loading ? (
+        <p className={styles.state}>
+          {t('products.loading')}
+        </p>
+      ) : discovery.error ? (
+        <p className={styles.state}>
+          {t('products.error')}
+        </p>
       ) : (
         <ProductGrid
-          products={visibleProducts}
+          products={discovery.visible}
           locale={locale}
+          ratings={discovery.ratings}
           emptyMessage={t('products.empty')}
         />
       )}
 
-      {hasMore && !loading && (
+      {discovery.hasMore && !discovery.loading && (
         <Button
           className={styles.more}
-          disabled={loadingMore}
-          onClick={() => void loadMore()}
+          onClick={discovery.loadMore}
         >
-          {loadingMore ? t('products.loading') : t('products.loadMore')}
+          {t('products.loadMore')}
         </Button>
       )}
     </section>

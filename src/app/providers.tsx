@@ -1,16 +1,21 @@
 import type { PropsWithChildren } from 'react'
 import { AuthProvider } from '../features/auth/context/AuthProvider'
 import { CartProvider } from '../features/cart/context/CartProvider'
+import { FavoritesProvider } from '../features/favorites/context/FavoritesProvider'
 import { LanguageProvider } from '../features/language/context/LanguageProvider'
 import { ThemeProvider } from '../features/theme/context/ThemeProvider'
 
-function AppProviders({ children }: PropsWithChildren) {
+function AppProviders({
+  children,
+}: PropsWithChildren) {
   return (
     <ThemeProvider>
       <LanguageProvider>
         <CartProvider>
           <AuthProvider>
-            {children}
+            <FavoritesProvider>
+              {children}
+            </FavoritesProvider>
           </AuthProvider>
         </CartProvider>
       </LanguageProvider>

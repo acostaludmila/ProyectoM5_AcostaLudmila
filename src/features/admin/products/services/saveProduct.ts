@@ -8,7 +8,9 @@ import {
 } from 'firebase/firestore'
 import { collections } from '../../../../config/collections'
 import { db } from '../../../../config/firebase'
-import type { ProductWriteInput } from '../types/adminProduct.types'
+import type {
+  ProductWriteInput,
+} from '../types/adminProduct.types'
 
 export async function saveProduct(
   productId: string | undefined,
@@ -20,9 +22,11 @@ export async function saveProduct(
       {
         ...data,
         imageUrl: deleteField(),
+        subcategory: deleteField(),
         updatedAt: serverTimestamp(),
       },
     )
+
     return productId
   }
 
@@ -30,6 +34,7 @@ export async function saveProduct(
     collection(db, collections.products),
     {
       ...data,
+      viewCount: 0,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
     },

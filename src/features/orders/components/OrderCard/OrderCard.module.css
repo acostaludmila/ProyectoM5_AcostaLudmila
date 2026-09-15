@@ -31,6 +31,13 @@
   font-weight: 500;
 }
 
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 0.6rem;
+}
+
 .action {
   width: fit-content;
   text-decoration: none;
@@ -38,7 +45,8 @@
 
 @media (min-width: 640px) {
   .card {
-    grid-template-columns: minmax(0, 1fr) auto auto auto;
+    grid-template-columns:
+      minmax(0, 1fr) auto auto minmax(12rem, auto);
     align-items: center;
   }
 }

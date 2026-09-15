@@ -24,12 +24,19 @@ export function mapProductDocument(
     description: String(data.description ?? ''),
     price: Number(data.price ?? 0),
     category: data.category as ProductCategory,
+    tags: Array.isArray(data.tags)
+      ? data.tags.filter(
+          (tag): tag is string =>
+            typeof tag === 'string',
+        )
+      : [],
     images: normalizeProductImages(
       data.images,
       data.imageUrl,
     ),
     variants: normalizeProductVariants(data.variants),
     active: data.active === true,
+    viewCount: Number(data.viewCount ?? 0),
     createdAt: data.createdAt,
     updatedAt: data.updatedAt,
   }
