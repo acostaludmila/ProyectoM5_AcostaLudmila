@@ -1,0 +1,33 @@
+.search {
+  display: block;
+  width: min(100%, 24rem);
+}
+
+.search input {
+  width: 100%;
+  min-height: 2.75rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  font: inherit;
+  outline: none;
+  transition: border-color 160ms ease;
+}
+
+.search input:focus {
+  border-color: var(--accent);
+}
+
+.search input::placeholder {
+  color: var(--muted);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

@@ -1,0 +1,42 @@
+.page {
+  display: grid;
+  gap: 2.5rem;
+  width: min(100% - 3rem, 90rem);
+  margin: 0 auto;
+  padding: 4rem 0 6rem;
+}
+
+.header {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.header span {
+  color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  font-weight: 500;
+}
+
+.state {
+  margin: 4rem 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+.more {
+  width: min(100%, 16rem);
+  margin: 1rem auto 0;
+}
+
+@media (min-width: 768px) {
+  .page {
+    width: min(100% - 5rem, 90rem);
+    padding-top: 5rem;
+  }
+}

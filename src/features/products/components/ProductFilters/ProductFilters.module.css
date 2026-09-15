@@ -1,0 +1,32 @@
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.filters button {
+  flex: 0 0 auto;
+  border: 1px solid var(--border);
+  background: transparent;
+  padding: 0.7rem 1rem;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.filters button:hover {
+  border-color: var(--accent);
+}
+
+.filters .active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
