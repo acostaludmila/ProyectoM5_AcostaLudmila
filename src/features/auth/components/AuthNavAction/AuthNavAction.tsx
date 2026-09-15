@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import ConfirmDialog from '../../../../components/ui/ConfirmDialog/ConfirmDialog'
 import { useLanguage } from '../../../language/hooks/useLanguage'
 import { useAuth } from '../../hooks/useAuth'
 import { logoutUser } from '../../services/logoutUser'
@@ -11,6 +13,7 @@ interface AuthNavActionProps {
 function AuthNavAction({ onNavigate }: AuthNavActionProps) {
   const { isAuthenticated, loading } = useAuth()
   const { t } = useLanguage()
+  const [confirming, setConfirming] = useState(false)
 
   if (loading) return null
 
@@ -28,17 +31,30 @@ function AuthNavAction({ onNavigate }: AuthNavActionProps) {
 
   const handleLogout = async () => {
     await logoutUser()
+    setConfirming(false)
     onNavigate?.()
   }
 
   return (
-    <button
-      type="button"
-      className={styles.action}
-      onClick={() => void handleLogout()}
-    >
-      {t('auth.logout')}
-    </button>
+    <>
+      <button
+        type="button"
+        className={styles.action}
+        onClick={() => setConfirming(true)}
+      >
+        {t('auth.logout')}
+      </button>
+
+      <ConfirmDialog
+        open={confirming}
+        title={t('auth.logoutConfirm.title')}
+        description={t('auth.logoutConfirm.description')}
+        cancelLabel={t('common.cancel')}
+        confirmLabel={t('auth.logout')}
+        onCancel={() => setConfirming(false)}
+        onConfirm={() => void handleLogout()}
+      />
+    </>
   )
 }
 

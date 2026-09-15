@@ -1,0 +1,53 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgb(18 24 22 / 72%);
+  backdrop-filter: blur(8px);
+}
+
+.dialog {
+  width: min(100%, 28rem);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 2rem;
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 22%);
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+}
+
+.dialog h2 {
+  margin: 0.6rem 0 0;
+  color: var(--text);
+  font-size: 1.65rem;
+  font-weight: 500;
+}
+
+.dialog p {
+  margin: 0.9rem 0 1.75rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+@media (max-width: 420px) {
+  .dialog {
+    padding: 1.5rem;
+  }
+
+  .actions {
+    grid-template-columns: 1fr;
+  }
+}

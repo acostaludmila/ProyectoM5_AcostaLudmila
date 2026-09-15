@@ -1,0 +1,33 @@
+.page {
+  width: min(100% - 3rem, 60rem);
+  margin: 0 auto;
+  padding: 4rem 0 6rem;
+}
+
+.page header span {
+  color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+}
+
+.page h1 {
+  margin: 0.5rem 0 2rem;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 500;
+}
+
+.state,
+.empty {
+  color: var(--muted);
+}
+
+.empty {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+}
+
+.empty a {
+  color: var(--text);
+  text-underline-offset: 0.25rem;
+}

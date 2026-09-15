@@ -38,4 +38,5 @@
 
 .secondary:not(:disabled):hover {
   border-color: var(--accent);
+  color: var(--accent);
 }

@@ -1,0 +1,74 @@
+.page {
+  width: min(100% - 3rem, 60rem);
+  margin: 0 auto;
+  padding: 4rem 0 6rem;
+}
+
+.page header > span {
+  display: inline-block;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 0.45rem 0.7rem;
+  color: var(--accent);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.page h1 {
+  margin: 1rem 0 0.5rem;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 500;
+}
+
+.page header p,
+.items span {
+  color: var(--muted);
+}
+
+.items {
+  margin: 2rem 0;
+}
+
+.items article {
+  display: grid;
+  grid-template-columns: 4rem 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0;
+}
+
+.items img {
+  width: 4rem;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.items article div {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.items span {
+  font-size: 0.8rem;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.back {
+  width: fit-content;
+  text-decoration: none;
+}
+
+.state {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+}

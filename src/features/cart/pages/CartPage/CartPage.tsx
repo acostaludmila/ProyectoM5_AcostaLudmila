@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import LinkButton from '../../../../components/ui/LinkButton/LinkButton'
 import { useLanguage } from '../../../language/hooks/useLanguage'
 import CartItemCard from '../../components/CartItemCard/CartItemCard'
 import CartSummary from '../../components/CartSummary/CartSummary'
@@ -20,9 +20,9 @@ function CartPage() {
       {items.length === 0 ? (
         <div className={styles.empty}>
           <p>{t('cart.empty')}</p>
-          <Link to="/collections">
-            {t('cart.continue')}
-          </Link>
+          <LinkButton to="/collections">
+          {t('cart.continue')}
+        </LinkButton>
         </div>
       ) : (
         <div className={styles.layout}>

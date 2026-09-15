@@ -35,8 +35,10 @@
   padding: 1.25rem 0;
 }
 
-.items article div {
+.items article div,
+.side {
   display: grid;
+  align-content: start;
   gap: 0.35rem;
 }
 
@@ -47,15 +49,21 @@
 }
 
 .side {
-  display: grid;
-  align-content: start;
   gap: 1rem;
+}
+
+.side > button {
+  width: 100%;
 }
 
 .side > a,
 .empty a {
   color: var(--text);
   text-underline-offset: 0.25rem;
+}
+
+.error {
+  color: var(--text) !important;
 }
 
 .empty {
@@ -67,7 +75,5 @@
 }
 
 @media (min-width: 800px) {
-  .layout {
-    grid-template-columns: minmax(0, 1fr) 20rem;
-  }
+  .layout { grid-template-columns: minmax(0, 1fr) 20rem; }
 }
