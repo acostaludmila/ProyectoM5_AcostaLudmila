@@ -20,7 +20,7 @@ function Header() {
       <div className={styles.inner}>
         <div className={styles.brandGroup}>
           {isAdmin && (
-            <Link to="/admin/products" className={styles.admin}>
+            <Link to="/admin" className={styles.admin}>
               ADMIN
             </Link>
           )}

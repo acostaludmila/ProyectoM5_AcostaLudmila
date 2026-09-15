@@ -33,7 +33,7 @@ function NavLinks({ onNavigate }: NavLinksProps) {
       )}
 
       {isAdmin && (
-        <NavLink to="/admin/products"
+        <NavLink to="/admin"
           className={linkClass} onClick={onNavigate}>
           {t('admin.products.nav')}
         </NavLink>

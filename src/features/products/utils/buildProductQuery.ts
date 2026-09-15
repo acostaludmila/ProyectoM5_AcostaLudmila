@@ -6,7 +6,7 @@ import {
   where,
   type QueryConstraint,
 } from 'firebase/firestore'
-import type { ProductQueryOptions } from '../types/product.types'
+import type { ProductQueryOptions } from '../types/productQuery.types'
 
 const DEFAULT_PAGE_SIZE = 8
 

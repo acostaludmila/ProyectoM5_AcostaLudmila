@@ -8,7 +8,7 @@ import { db } from '../../../config/firebase'
 import type {
   ProductPage,
   ProductQueryOptions,
-} from '../types/product.types'
+} from '../types/productQuery.types'
 import { buildProductQuery } from '../utils/buildProductQuery'
 import { mapProductDocument } from '../utils/mapProductDocument'
 

@@ -1,7 +1,5 @@
-import {
-  MAX_PRODUCT_IMAGES,
-  type ProductImage,
-} from '../types/productImage.types'
+import { MAX_PRODUCT_IMAGES } from '../constants/productLimits'
+import type { ProductImage } from '../types/productImage.types'
 
 export function normalizeProductImages(
   images: unknown,

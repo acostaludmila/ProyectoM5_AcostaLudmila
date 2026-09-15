@@ -1,0 +1,28 @@
+export const esCatalog = {
+  'collections.eyebrow': 'DESCUBRÍ',
+  'collections.title': 'Nuestras Colecciones',
+  'collections.clothing.name': 'Ropa',
+  'collections.clothing.description':
+    'Prendas modernas pensadas para acompañarte con versatilidad todos los días.',
+  'collections.jewelry.name': 'Joyería',
+  'collections.jewelry.description': 'Detalles refinados creados para complementar cada look.',
+  'collections.essentials.name': 'Esenciales',
+  'collections.essentials.description':
+    'Piezas atemporales seleccionadas para un estilo cotidiano sin esfuerzo.',
+  'products.eyebrow': 'TIENDA',
+  'products.title': 'La Colección',
+  'products.all': 'Todo',
+  'products.loading': 'Cargando...',
+  'products.error': 'No pudimos cargar la colección.',
+  'products.empty': 'No encontramos productos.',
+  'product.notFound': 'Producto no encontrado.',
+  'product.color': 'Color',
+  'product.size': 'Talle',
+  'product.stock': 'En stock',
+  'product.outOfStock': 'Sin stock',
+  'product.previousImage': 'Imagen anterior',
+  'product.nextImage': 'Imagen siguiente',
+  'products.search': 'Buscar productos',
+  'products.loadMore': 'CARGAR MÁS',
+  'product.addToCart': 'AGREGAR AL CARRITO',
+} as const

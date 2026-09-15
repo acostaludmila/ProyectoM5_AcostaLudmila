@@ -1,3 +1,5 @@
+
+import ImageCarouselChevron from './ImageCarouselChevron'
 import styles from './ImageCarousel.module.css'
 
 interface ImageCarouselProps {
@@ -8,18 +10,6 @@ interface ImageCarouselProps {
   nextLabel: string
   onPrevious: () => void
   onNext: () => void
-}
-
-function Chevron({ previous = false }: { previous?: boolean }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-      className={previous ? styles.reverse : undefined}
-    >
-      <path d="m9 18 6-6-6-6" />
-    </svg>
-  )
 }
 
 function ImageCarousel({
@@ -43,7 +33,7 @@ function ImageCarousel({
             aria-label={previousLabel}
             onClick={onPrevious}
           >
-            <Chevron previous />
+            <ImageCarouselChevron previous />
           </button>
 
           <button
@@ -52,7 +42,7 @@ function ImageCarousel({
             aria-label={nextLabel}
             onClick={onNext}
           >
-            <Chevron />
+            <ImageCarouselChevron />
           </button>
         </>
       )}

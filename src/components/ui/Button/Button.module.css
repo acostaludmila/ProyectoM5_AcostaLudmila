@@ -1,11 +1,16 @@
+
 .button {
   display: flex;
   min-height: 2.75rem;
   align-items: center;
   justify-content: center;
   gap: 0.65rem;
-  border: 1px solid transparent;
+  border: 1px solid
+    color-mix(in srgb, var(--accent) 45%, var(--border));
+  background:
+    color-mix(in srgb, var(--accent) 10%, var(--surface));
   padding: 0.75rem 1rem;
+  color: var(--text);
   font: inherit;
   font-size: 0.8rem;
   letter-spacing: 0.06em;
@@ -21,22 +26,33 @@
   opacity: 0.55;
 }
 
+.button:hover:not(:disabled) {
+  border-color: var(--accent);
+  background:
+    color-mix(in srgb, var(--accent) 18%, var(--surface));
+}
+
 .primary {
+  border-color: var(--accent);
   background: var(--accent);
   color: var(--accent-foreground);
 }
 
-.primary:not(:disabled):hover {
-  opacity: 0.88;
+.primary:hover:not(:disabled) {
+  background:
+    color-mix(in srgb, var(--accent) 85%, var(--text));
 }
 
 .secondary {
-  border-color: var(--border);
-  background: transparent;
+  border-color:
+    color-mix(in srgb, var(--accent) 55%, var(--border));
+  background:
+    color-mix(in srgb, var(--accent) 12%, var(--surface));
   color: var(--text);
 }
 
-.secondary:not(:disabled):hover {
+.secondary:hover:not(:disabled) {
   border-color: var(--accent);
-  color: var(--accent);
+  background:
+    color-mix(in srgb, var(--accent) 22%, var(--surface));
 }

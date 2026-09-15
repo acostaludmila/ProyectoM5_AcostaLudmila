@@ -1,0 +1,37 @@
+.card {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 1.25rem;
+}
+
+.main,
+.meta {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.main span,
+.meta span {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.id {
+  color: var(--accent) !important;
+  letter-spacing: 0.08em;
+}
+
+@media (min-width: 768px) {
+  .card {
+    grid-template-columns: 1.4fr 1fr auto;
+  }
+
+  .meta {
+    grid-template-columns: repeat(3, auto);
+    gap: 1rem;
+    align-items: center;
+  }
+}

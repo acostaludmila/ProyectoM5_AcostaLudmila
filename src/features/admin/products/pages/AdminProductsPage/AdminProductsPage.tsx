@@ -27,9 +27,14 @@ function AdminProductsPage() {
           <span>AURELLE ADMIN</span>
           <h1>{t('admin.products.title')}</h1>
         </div>
-        <LinkButton to="/admin/products/new" variant="primary">
-          {t('admin.products.new')}
-        </LinkButton>
+        <div className={styles.actions}>
+          <LinkButton to="/admin">
+            {t('admin.dashboard.back')}
+          </LinkButton>
+          <LinkButton to="/admin/products/new" variant="primary">
+            {t('admin.products.new')}
+          </LinkButton>
+        </div>
       </header>
 
       {loading && <p>{t('products.loading')}</p>}

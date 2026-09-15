@@ -64,7 +64,7 @@ export async function createOrder(
       userId,
       items: orderItems,
       total,
-      status: 'pending',
+      status: 'paid',
       createdAt: serverTimestamp(),
     })
   })

@@ -1,7 +1,9 @@
-import type { Timestamp } from 'firebase/firestore'
+
+import type { DateValue } from '../../../types/date.types'
 
 export type OrderStatus =
   | 'pending'
+  | 'paid'
   | 'processing'
   | 'shipped'
   | 'delivered'
@@ -23,5 +25,5 @@ export interface Order {
   items: OrderItem[]
   total: number
   status: OrderStatus
-  createdAt: Timestamp | null
+  createdAt: DateValue | null
 }

@@ -8,6 +8,7 @@ import styles from './OrderCard.module.css'
 
 const statusKeys: Record<OrderStatus, TranslationKey> = {
   pending: 'orders.status.pending',
+  paid: 'orders.status.paid',
   processing: 'orders.status.processing',
   shipped: 'orders.status.shipped',
   delivered: 'orders.status.delivered',

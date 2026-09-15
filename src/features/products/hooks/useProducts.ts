@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useState } from 'react'
 import { getProducts } from '../services/getProducts'
-import type { Product, ProductCategory, ProductCursor, ProductPage } from '../types/product.types'
+import type { Product, ProductCategory } from '../types/product.types'
+import type {
+  ProductCursor,
+  ProductPage,
+} from '../types/productQuery.types'
 
 const PAGE_SIZE = 8
 type Category = ProductCategory | 'all'

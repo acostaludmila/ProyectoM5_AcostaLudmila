@@ -1,7 +1,8 @@
-import type { Timestamp } from 'firebase/firestore'
+
+import type { DateValue } from '../../../types/date.types'
 
 export function formatOrderDate(
-  value: Timestamp | null,
+  value: DateValue | null,
   locale: string,
 ) {
   if (!value) return '—'

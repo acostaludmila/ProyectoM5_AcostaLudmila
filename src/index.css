@@ -9,18 +9,16 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
-}
-
-/* Tema claro — Stone Pine */
+}/* Tema claro — Stone Pine */
 :root {
   color-scheme: light;
-  --background: #f1f3f0;
-  --surface: #fafbf8;
+  --background: #EEF3EF;
+  --surface: #E4ECE6;
   --text: #222825;
   --accent: #2e5a4d;
   --accent-foreground: #f7fbf8;
-  --muted: #68716c;
-  --border: #d5dcd7;
+  --muted: #5F6E66;
+  --border: #BECFC2;
 }
 
 /* Tema oscuro — Stone Pine */
