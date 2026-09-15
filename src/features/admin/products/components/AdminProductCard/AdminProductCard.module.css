@@ -1,0 +1,46 @@
+.card {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 0;
+}
+
+.card img {
+  width: 5rem;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.info {
+  display: grid;
+  align-content: center;
+  gap: 0.35rem;
+}
+
+.info span {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.actions a {
+  text-decoration: none;
+}
+
+@media (min-width: 700px) {
+  .card {
+    grid-template-columns: 5rem minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .actions {
+    grid-column: auto;
+  }
+}

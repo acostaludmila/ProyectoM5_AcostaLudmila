@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../../features/auth/hooks/useAuth'
 import CartNavAction from '../../../features/cart/components/CartNavAction/CartNavAction'
 import { useLanguage } from '../../../features/language/hooks/useLanguage'
 import HeaderControlButton from '../../ui/HeaderControlButton/HeaderControlButton'
@@ -11,14 +12,22 @@ import styles from './Header.module.css'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { isAdmin } = useAuth()
   const { t } = useLanguage()
 
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <Link to="/" className={styles.brand}>
-          AURELLE
-        </Link>
+        <div className={styles.brandGroup}>
+          {isAdmin && (
+            <Link to="/admin/products" className={styles.admin}>
+              ADMIN
+            </Link>
+          )}
+          <Link to="/" className={styles.brand}>
+            AURELLE
+          </Link>
+        </div>
 
         <nav aria-label="Primary navigation" className={styles.desktopNav}>
           <NavLinks />

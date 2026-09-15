@@ -10,33 +10,32 @@ interface NavLinksProps {
 }
 
 function NavLinks({ onNavigate }: NavLinksProps) {
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, isAdmin } = useAuth()
   const { t } = useLanguage()
+
+  const linkClass = ({ isActive }: { isActive: boolean }) =>
+    `${styles.link} ${isActive ? styles.active : ''}`
 
   return (
     <>
       {navItems.map(({ labelKey, to }) => (
-        <NavLink
-          key={to}
-          to={to}
-          className={({ isActive }) =>
-            `${styles.link} ${isActive ? styles.active : ''}`
-          }
-          onClick={onNavigate}
-        >
+        <NavLink key={to} to={to}
+          className={linkClass} onClick={onNavigate}>
           {t(labelKey)}
         </NavLink>
       ))}
 
       {isAuthenticated && (
-        <NavLink
-          to="/orders"
-          className={({ isActive }) =>
-            `${styles.link} ${isActive ? styles.active : ''}`
-          }
-          onClick={onNavigate}
-        >
+        <NavLink to="/orders"
+          className={linkClass} onClick={onNavigate}>
           {t('orders.nav')}
+        </NavLink>
+      )}
+
+      {isAdmin && (
+        <NavLink to="/admin/products"
+          className={linkClass} onClick={onNavigate}>
+          {t('admin.products.nav')}
         </NavLink>
       )}
 

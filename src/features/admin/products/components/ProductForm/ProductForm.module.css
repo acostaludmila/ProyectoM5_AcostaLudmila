@@ -1,0 +1,80 @@
+.form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.5rem;
+  color: var(--text);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+}
+
+.control {
+  width: 100%;
+  min-height: 2.9rem;
+  box-sizing: border-box;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 0.8rem 0.9rem;
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+
+.control:focus {
+  border-color: var(--accent);
+}
+
+.textarea {
+  min-height: 7rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.field small {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.row {
+  display: grid;
+  gap: 1rem;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: fit-content;
+  color: var(--text);
+  font-size: 0.8rem;
+}
+
+.check input {
+  accent-color: var(--accent);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.actions a {
+  text-decoration: none;
+}
+
+.error {
+  margin: 0;
+  color: var(--text);
+}
+
+@media (min-width: 640px) {
+  .row {
+    grid-template-columns: 1fr 1fr;
+  }
+}

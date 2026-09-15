@@ -1,0 +1,51 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgb(18 24 22 / 78%);
+  backdrop-filter: blur(9px);
+}
+
+.card {
+  width: min(100%, 28rem);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.brand {
+  color: var(--accent);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+}
+
+.spinner {
+  width: 2.25rem;
+  height: 2.25rem;
+  margin: 1.75rem auto;
+  border: 1px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+.card h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.card p {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

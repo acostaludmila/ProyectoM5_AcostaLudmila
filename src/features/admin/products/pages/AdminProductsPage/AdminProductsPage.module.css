@@ -1,0 +1,34 @@
+.page {
+  width: min(100% - 3rem, 68rem);
+  margin: 0 auto;
+  padding: 4rem 0 6rem;
+}
+
+.page > header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.page header span {
+  color: var(--accent);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+}
+
+.page h1 {
+  margin: 0.5rem 0 0;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 500;
+}
+
+.page header a {
+  text-decoration: none;
+}
+
+.page > p {
+  color: var(--muted);
+}

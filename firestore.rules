@@ -33,10 +33,7 @@ service cloud.firestore {
     }
 
     function validProfileUpdate() {
-      let changed = request.resource.data
-        .diff(resource.data)
-        .affectedKeys();
-
+      let changed = request.resource.data.diff(resource.data).affectedKeys();
       return changed.hasOnly([
         'displayName', 'photoURL', 'updatedAt'
       ])
@@ -46,9 +43,45 @@ service cloud.firestore {
         && request.resource.data.createdAt == resource.data.createdAt;
     }
 
+    function validProduct() {
+      let data = request.resource.data;
+      return data.keys().hasAll([
+        'name', 'description', 'price', 'category',
+        'images', 'variants', 'active', 'createdAt', 'updatedAt'
+      ])
+        && data.keys().hasOnly([
+          'name', 'description', 'price', 'category',
+          'images', 'variants', 'active', 'createdAt', 'updatedAt'
+        ])
+        && data.name is string
+        && data.description is string
+        && data.price is number
+        && data.price > 0
+        && data.category in ['clothing', 'jewelry', 'essentials']
+        && data.images is list
+        && data.images.size() > 0
+        && data.images.size() <= 5
+        && data.variants is list
+        && data.variants.size() > 0
+        && data.active is bool;
+    }
+
+    function validStockPurchase() {
+      let changed = request.resource.data
+        .diff(resource.data)
+        .affectedKeys();
+
+      return signedIn()
+        && resource.data.active == true
+        && changed.hasOnly(['variants', 'updatedAt'])
+        && request.resource.data.variants is list
+        && request.resource.data.variants.size()
+          == resource.data.variants.size()
+        && request.resource.data.updatedAt == request.time;
+    }
+
     function validNewOrder() {
       let data = request.resource.data;
-
       return data.keys().hasAll([
         'userId', 'items', 'total', 'status', 'createdAt'
       ])
@@ -73,7 +106,17 @@ service cloud.firestore {
 
     match /products/{productId} {
       allow read: if resource.data.active == true || isAdmin();
-      allow write: if false;
+      allow create: if isAdmin()
+        && validProduct()
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+      allow update: if (
+        isAdmin()
+          && validProduct()
+          && request.resource.data.createdAt == resource.data.createdAt
+          && request.resource.data.updatedAt == request.time
+      ) || validStockPurchase();
+      allow delete: if isAdmin();
     }
 
     match /orders/{orderId} {

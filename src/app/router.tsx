@@ -1,4 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
+import AdminProductFormPage from '../features/admin/products/pages/AdminProductFormPage/AdminProductFormPage'
+import AdminProductsPage from '../features/admin/products/pages/AdminProductsPage/AdminProductsPage'
 import LoginPage from '../features/auth/pages/LoginPage/LoginPage'
 import RegisterPage from '../features/auth/pages/RegisterPage/RegisterPage'
 import CartPage from '../features/cart/pages/CartPage/CartPage'
@@ -13,6 +15,7 @@ import CollectionsPage from '../pages/CollectionsPage/CollectionsPage'
 import HomePage from '../pages/HomePage/HomePage'
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage'
 import UnauthorizedPage from '../pages/UnauthorizedPage/UnauthorizedPage'
+import AdminRoute from '../routes/AdminRoute'
 import ProtectedRoute from '../routes/ProtectedRoute'
 
 export const router = createBrowserRouter([
@@ -33,27 +36,27 @@ export const router = createBrowserRouter([
       { path: 'cart', element: <CartPage /> },
       {
         path: 'checkout',
-        element: (
-          <ProtectedRoute>
-            <CheckoutPage />
-          </ProtectedRoute>
-        ),
+        element: <ProtectedRoute><CheckoutPage /></ProtectedRoute>,
       },
       {
         path: 'orders',
-        element: (
-          <ProtectedRoute>
-            <OrdersPage />
-          </ProtectedRoute>
-        ),
+        element: <ProtectedRoute><OrdersPage /></ProtectedRoute>,
       },
       {
         path: 'orders/:orderId',
-        element: (
-          <ProtectedRoute>
-            <OrderDetailPage />
-          </ProtectedRoute>
-        ),
+        element: <ProtectedRoute><OrderDetailPage /></ProtectedRoute>,
+      },
+      {
+        path: 'admin/products',
+        element: <AdminRoute><AdminProductsPage /></AdminRoute>,
+      },
+      {
+        path: 'admin/products/new',
+        element: <AdminRoute><AdminProductFormPage /></AdminRoute>,
+      },
+      {
+        path: 'admin/products/:productId/edit',
+        element: <AdminRoute><AdminProductFormPage /></AdminRoute>,
       },
       { path: 'about', element: <AboutPage /> },
       { path: 'unauthorized', element: <UnauthorizedPage /> },

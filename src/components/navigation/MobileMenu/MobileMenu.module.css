@@ -72,7 +72,7 @@
   opacity: 0.88;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .overlay {
     display: none;
   }

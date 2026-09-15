@@ -3,30 +3,50 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../auth/hooks/useAuth'
 import { useCart } from '../../cart/hooks/useCart'
 import { createOrder } from '../services/createOrder'
+import { processPayment } from '../services/processPayment'
+
+export type CheckoutStage = 'idle' | 'payment' | 'order'
+export type PlaceOrderError = 'payment' | 'stock' | 'unknown' | null
 
 export function usePlaceOrder() {
   const { user } = useAuth()
   const { items, clearCart } = useCart()
   const navigate = useNavigate()
-  const [placing, setPlacing] = useState(false)
-  const [error, setError] = useState(false)
+  const [stage, setStage] = useState<CheckoutStage>('idle')
+  const [error, setError] = useState<PlaceOrderError>(null)
 
   const placeOrder = async () => {
-    if (!user || items.length === 0 || placing) return
+    if (!user || items.length === 0 || stage !== 'idle') return
 
-    setPlacing(true)
-    setError(false)
+    setError(null)
+    setStage('payment')
+
+    try {
+      await processPayment()
+    } catch {
+      setError('payment')
+      setStage('idle')
+      return
+    }
+
+    setStage('order')
 
     try {
       const orderId = await createOrder(user.uid, items)
       clearCart()
       navigate(`/orders/${orderId}`, { replace: true })
-    } catch {
-      setError(true)
-    } finally {
-      setPlacing(false)
+    } catch (caught) {
+      const outOfStock =
+        caught instanceof Error && caught.message === 'OUT_OF_STOCK'
+      setError(outOfStock ? 'stock' : 'unknown')
+      setStage('idle')
     }
   }
 
-  return { placing, error, placeOrder }
+  return {
+    stage,
+    placing: stage !== 'idle',
+    error,
+    placeOrder,
+  }
 }
