@@ -1,0 +1,17 @@
+.button {
+  width: 100%;
+  position: relative;
+}
+
+.button svg {
+  position: absolute;
+  left: 1rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  flex-shrink: 0;
+}
+
+.button span {
+  width: 100%;
+  text-align: center;
+}

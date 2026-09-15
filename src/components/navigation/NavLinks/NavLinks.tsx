@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import AuthNavAction from '../../../features/auth/components/AuthNavAction/AuthNavAction'
 import { useLanguage } from '../../../features/language/hooks/useLanguage'
 import { navItems } from '../navItems'
 import styles from './NavLinks.module.css'
@@ -16,14 +17,16 @@ function NavLinks({ onNavigate }: NavLinksProps) {
         <NavLink
           key={to}
           to={to}
-          onClick={onNavigate}
           className={({ isActive }) =>
             `${styles.link} ${isActive ? styles.active : ''}`
           }
+          onClick={onNavigate}
         >
           {t(labelKey)}
         </NavLink>
       ))}
+
+      <AuthNavAction onNavigate={onNavigate} />
     </>
   )
 }

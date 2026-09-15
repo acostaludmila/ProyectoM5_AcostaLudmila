@@ -6,17 +6,23 @@ interface MobileMenuProps {
   onClose: () => void
 }
 
-function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-  if (!isOpen) {
-    return null
-  }
+function MobileMenu({
+  isOpen,
+  onClose,
+}: MobileMenuProps) {
+  if (!isOpen) return null
 
   return (
-    <nav aria-label="Mobile navigation" className={styles.menu}>
-      <div className={styles.links}>
-        <NavLinks onNavigate={onClose} />
-      </div>
-    </nav>
+    <div className={styles.overlay}>
+      <nav
+        className={styles.menu}
+        aria-label="Mobile navigation"
+      >
+        <div className={styles.links}>
+          <NavLinks onNavigate={onClose} />
+        </div>
+      </nav>
+    </div>
   )
 }
 

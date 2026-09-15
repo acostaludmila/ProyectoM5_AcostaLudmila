@@ -1,0 +1,16 @@
+.action {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.8rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 160ms ease;
+}
+
+.action:hover,
+.action:focus-visible {
+  color: var(--accent);
+}

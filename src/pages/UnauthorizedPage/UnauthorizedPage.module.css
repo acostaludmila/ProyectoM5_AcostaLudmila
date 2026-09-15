@@ -1,0 +1,45 @@
+.page {
+  display: grid;
+  min-height: 60vh;
+  place-content: center;
+  justify-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.code {
+  color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+}
+
+.page h1,
+.page p {
+  margin: 0;
+}
+
+.page h1 {
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  font-weight: 500;
+}
+
+.page p {
+  max-width: 32rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.link {
+  margin-top: 1rem;
+  background: var(--accent);
+  padding: 0.8rem 1.2rem;
+  color: var(--accent-foreground);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+
+.link:hover {
+  opacity: 0.88;
+}

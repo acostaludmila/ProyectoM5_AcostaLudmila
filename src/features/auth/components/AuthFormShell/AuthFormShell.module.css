@@ -1,0 +1,75 @@
+.shell {
+  display: grid;
+  width: 100%;
+  gap: 1.5rem;
+  padding: 2rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.header {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.header h1,
+.header p,
+.error,
+.prompt {
+  margin: 0;
+}
+
+.header h1 {
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  font-weight: 500;
+}
+
+.header p,
+.prompt {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+.error {
+  font-size: 0.8rem;
+}
+
+.prompt {
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.prompt a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.prompt a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 420px) {
+  .shell { padding: 1.5rem; }
+}

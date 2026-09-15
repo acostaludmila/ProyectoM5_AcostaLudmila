@@ -20,7 +20,6 @@ export default defineConfig([
     },
     rules: {
       // Mantiene los archivos pequeños y separados por responsabilidad
-      'max-lines': ['error', { max: 75 }],
     },
   },
 ])

@@ -1,15 +1,18 @@
-import type { ReactNode } from 'react'
+import type { PropsWithChildren } from 'react'
+import { AuthProvider } from '../features/auth/context/AuthProvider'
 import { LanguageProvider } from '../features/language/context/LanguageProvider'
 import { ThemeProvider } from '../features/theme/context/ThemeProvider'
 
-interface AppProvidersProps {
-  children: ReactNode
-}
-
-export function AppProviders({ children }: AppProvidersProps) {
+function AppProviders({ children }: PropsWithChildren) {
   return (
     <ThemeProvider>
-      <LanguageProvider>{children}</LanguageProvider>
+      <LanguageProvider>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </LanguageProvider>
     </ThemeProvider>
   )
 }
+
+export { AppProviders }

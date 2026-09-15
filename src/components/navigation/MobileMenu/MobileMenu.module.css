@@ -1,16 +1,79 @@
+.overlay {
+  position: fixed;
+  inset: 4rem 0 0;
+  z-index: 40;
+  display: flex;
+  justify-content: flex-end;
+  background: color-mix(
+    in srgb,
+    var(--background) 68%,
+    transparent
+  );
+  backdrop-filter: blur(8px);
+}
+
 .menu {
-  border-top: 1px solid var(--border);
-  background: var(--background);
+  width: min(100%, 24rem);
+  height: 100%;
+  border-left: 1px solid var(--border);
+  background: var(--surface);
+  padding: 2rem;
+  box-shadow: -1rem 0 3rem
+    color-mix(in srgb, var(--text) 8%, transparent);
 }
 
 .links {
+  display: grid;
+  align-content: start;
+}
+
+.links > a,
+.links > button {
   display: flex;
-  flex-direction: column;
-  padding: 1rem 1.5rem;
+  min-height: 4.25rem;
+  align-items: center;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  padding: 0;
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    padding-left 160ms ease;
+}
+
+.links > a:hover,
+.links > button:hover {
+  padding-left: 0.4rem;
+  color: var(--accent);
+}
+
+.links > a:last-child,
+.links > button:last-child {
+  justify-content: center;
+  min-height: 3.25rem;
+  margin-top: 2rem;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--accent-foreground);
+  font-size: 0.8rem;
+}
+
+.links > a:last-child:hover,
+.links > button:last-child:hover {
+  padding-left: 0;
+  opacity: 0.88;
 }
 
 @media (min-width: 768px) {
-  .menu {
+  .overlay {
     display: none;
   }
 }
