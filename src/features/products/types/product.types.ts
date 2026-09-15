@@ -1,4 +1,6 @@
 import type { Timestamp } from 'firebase/firestore'
+import type { ProductImage } from './productImage.types'
+import type { ProductVariant } from './productVariant.types'
 
 export type ProductCategory =
   | 'clothing'
@@ -11,7 +13,8 @@ export interface Product {
   description: string
   price: number
   category: ProductCategory
-  imageUrl: string
+  images: ProductImage[]
+  variants: ProductVariant[]
   active: boolean
   createdAt: Timestamp
   updatedAt: Timestamp

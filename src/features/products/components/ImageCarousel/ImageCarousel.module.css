@@ -1,0 +1,62 @@
+.carousel {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--surface);
+}
+
+.carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel button {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid var(--border);
+  background: color-mix(
+    in srgb,
+    var(--background) 88%,
+    transparent
+  );
+  padding: 0;
+  color: var(--text);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.carousel button:hover {
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.carousel button svg {
+  display: block;
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.reverse {
+  transform: rotate(180deg);
+}
+
+.previous {
+  left: 1rem;
+}
+
+.next {
+  right: 1rem;
+}

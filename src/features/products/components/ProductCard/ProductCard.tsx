@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { formatCurrency } from '../../../../utils/formatCurrency'
 import type { Product } from '../../types/product.types'
 import styles from './ProductCard.module.css'
@@ -11,14 +12,21 @@ function ProductCard({
   product,
   locale,
 }: ProductCardProps) {
+  const image = product.images[0]
+
   return (
-    <article className={styles.card}>
+    <Link
+      to={`/products/${product.id}`}
+      className={styles.card}
+    >
       <div className={styles.imageWrapper}>
-        <img
-          src={product.imageUrl}
-          alt={product.name}
-          className={styles.image}
-        />
+        {image && (
+          <img
+            src={image}
+            alt={product.name}
+            className={styles.image}
+          />
+        )}
       </div>
 
       <div className={styles.content}>
@@ -31,7 +39,7 @@ function ProductCard({
           {formatCurrency(product.price, locale)}
         </strong>
       </div>
-    </article>
+    </Link>
   )
 }
 
